@@ -12,7 +12,7 @@ class App extends React.Component<Props, State> {
   render() { 
     return (
       <div>
-        가나다
+        가나다라
       </div>
     );
   }
