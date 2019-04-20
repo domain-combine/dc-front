@@ -67,6 +67,7 @@
 		]
 	},
 	"dependencies": {
+		"@types/classnames": "^2.2.7",
 		"@types/react": "^16.8.13",
 		"@types/react-dom": "^16.8.3",
 		"@types/react-router-dom": "^4.3.2",
@@ -90,6 +91,7 @@
 		"@babel/core": "7.2.2",
 		"@babel/plugin-transform-react-jsx-source": "^7.2.0",
 		"@svgr/webpack": "4.1.0",
+		"@types/fontfaceobserver": "0.0.6",
 		"@types/jest": "^24.0.11",
 		"babel-core": "7.0.0-bridge.0",
 		"babel-eslint": "9.0.0",
