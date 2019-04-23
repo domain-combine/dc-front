@@ -1,18 +1,53 @@
-import * as React from 'react';
+import React from 'react';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
+import FontFaceObserver from 'fontfaceobserver';
+import classNames from 'classnames';
+
+import './App.scss';
+import './assets/font/index.scss';
+import Main from './container/Main';
+
 
 export interface Props {
   
 }
  
 export interface State {
-  
+  fontLoad: boolean;
 }
  
+const history = createBrowserHistory();
+
 class App extends React.Component<Props, State> {
+  state: State;
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      fontLoad: false,
+    };
+  }
+
+  componentDidMount() {
+    const font = new FontFaceObserver('NotoSansCJKkr');
+    font.load(null, 10000).then(() => {
+      console.log('font load')
+      this.setState({fontLoad: true});
+    })
+  }
+
   render() { 
     return (
-      <div>
-        가나다라
+      <div className={classNames(
+        'App', {
+          'App--load': this.state.fontLoad
+        }
+      )}>
+        <Router history={history}>
+          <Switch>
+            <Route path="/" component={Main} exact/>
+          </Switch>
+        </Router>
       </div>
     );
   }
