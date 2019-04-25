@@ -1,0 +1,29 @@
+.MainSearchBar {
+    width: 100%;
+    height: 21vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__InputBox {
+        width: 800px;
+        height: 50px;
+        text-align: center;
+        font-size: 50px;
+        font-weight: 900;
+        color: #000000;
+        &__input {
+            font-size: 48px;
+            transform: translateY(-5px);
+            border: 0;
+            border-bottom: solid 3px #000;
+            outline: none;
+            font-weight: 700;
+            font-family: 'NotoSansCJKkr';
+            text-align: center;
+            &::placeholder {
+                font-size: 30px;
+                color: #DDD;
+            }
+        }
+    }
+}
