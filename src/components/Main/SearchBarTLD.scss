@@ -1,0 +1,31 @@
+.SearchBarTLD {
+    display: inline-block;
+    &__tld {
+        display: none;
+        width: 45px;
+        &--visual {
+            display: block;
+            opacity: 0;
+            animation: highlightAnimation 1.5s;
+        }
+    }
+}
+
+@keyframes highlightAnimation {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    25% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
