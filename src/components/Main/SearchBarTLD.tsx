@@ -3,42 +3,55 @@ import classNames from 'classnames';
 
 import './SearchBarTLD.scss';
 
-const tldList:string[] = [
-  '.com',
-  '.co.kr',
-  '.se',
-  '.me',
-  '.xyz',
-  '.kr',
-  '.dev',
-  '.xxx',
-  '.rich',
-  '.org',
-  '.io',
-  '.shop',
-  '.ga',
-  '.gg',
-  '.net'
-];
+export interface SearchBarTLDProps {
+  
+}
+ 
+export interface SearchBarTLDState {
+  selectIndex: number,
+  tldList: string[]
+}
+ 
+class SearchBarTLD extends React.Component<SearchBarTLDProps, SearchBarTLDState> {
+  state: SearchBarTLDState;
+  intervalId: any;
+  constructor(props: SearchBarTLDProps) {
+    super(props);
+    this.state = { 
+      selectIndex: 0,
+      tldList: [
+        '.com',
+        '.co.kr',
+        '.se',
+        '.hs.kr',
+        '.me',
+        '.xyz',
+        '.kr',
+        '.dev',
+        '.xxx',
+        '.rich',
+        '.org',
+        '.io',
+        '.shop',
+        '.ga',
+        '.gg',
+        '.net'
+      ]
+    };
+    this.intervalId = 0;
+  }
 
-const SearchBarTLD = () => {
-  const [ selectIndex, setSelectIndex ] = React.useState(0);
-
-  const changeIndex = () => {
+  changeIndex() {
+    const { selectIndex } = this.state;
     if (selectIndex === 14) {
-      setSelectIndex(0)
+      this.setState({selectIndex: 0});
     } else {
-      setSelectIndex(selectIndex + 1)
+      this.setState({selectIndex: selectIndex + 1});
     }
   }
-  React.useLayoutEffect(() => {
-    const interval = setInterval(() => changeIndex(), 1500);
 
-    return () => {
-      clearInterval(interval)
-    }
-  })
-  const renderList = () =>{
+  renderList = () =>{
+    const { selectIndex, tldList } = this.state;
     return tldList.map((tld:string, index:number) => {
       return (
         <span 
@@ -57,11 +70,22 @@ const SearchBarTLD = () => {
     })
   }
 
-  return (
-    <div className="SearchBarTLD">
-      {renderList()}
-    </div>
-  )
-}
+  componentDidMount() {
+    this.intervalId = setInterval(() => this.changeIndex(), 1500);
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
+  }
+  
 
+  render() { 
+    return (
+      <div className="SearchBarTLD">
+        {this.renderList()}
+      </div>
+    );
+  }
+}
+ 
 export default SearchBarTLD;
