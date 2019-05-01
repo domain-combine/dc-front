@@ -1,0 +1,72 @@
+[
+  {
+    "tld": ".com",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".co.kr",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".se",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".hs.kr",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".kr",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".xyz",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".shop",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".io",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".org",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".rich",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".xxx",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".net",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".gg",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  },
+  {
+    "tld": ".ga",
+    "lowPrice": 12000,
+    "highPrice": 15000
+  }
+]
