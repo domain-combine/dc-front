@@ -1,0 +1,199 @@
+.SearchPageBar {
+    width: 28vw;
+    height: 100%;
+    transition: 1s;
+    background-color: #fff;
+    &__Icon {
+        width: 100%;
+        height: 225px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & svg {
+            width: 200px;
+        }
+    }
+    &__ListTitle {
+        position: relative;
+        width: calc(90% - 20px);
+        height: 60px;
+        border-radius: 100px;
+        background-color: #efefef;
+        padding-left: 20px;
+        font-size: 20px;
+        line-height: 60px;
+        letter-spacing: 2.5px;
+        font-weight: bold;
+        color: #0dc1e3;
+        cursor: pointer;
+        transition: 0.5s;
+        margin: 30px auto;
+        &__arrow {
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            top: 22px;
+            width: 10px;
+            height: 10px;
+            border: 2px #0dc1e3 solid;
+            border-left: 0;
+            border-bottom: 0;
+            transform: rotate(-45deg);
+            transition: 0.5s;
+            &--open {
+                transform: rotate(135deg);
+            }
+        }
+        &:hover {
+            background-color: #dfdfdf;
+        }
+    }
+    &__List {
+        width: calc(90% - 20px);
+        margin: 0 auto;
+        &__item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            &--seller {
+                display: inline-block;
+                width: 50%;
+            }
+            &__checkbox {
+                display: none;
+            }
+            &__textLabel {
+                display: inline-block;
+                font-size: 17px;
+                font-weight: 500;
+                color: #4d4d4d;
+                transform: translateX(10px) translateY(-3px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            &__price {
+                position: absolute;
+                right: 0;
+                display: inline-block;
+                font-size: 17px;
+                font-weight: 500;
+                color: #4d4d4d;
+            }
+        }
+    }
+}
+
+input[class="SearchPageBar__List__item__checkbox"] {
+    &+label .SearchPageBar__List__item__checkLabel {
+        display: inline-block;
+        border-radius: 2.5px;
+        border: solid 2px #838383;
+        background-color: #e5e5e5;
+        width: 18px;
+        height: 18px;
+    }
+    &:checked {
+        &+label {
+            font-weight: 900;
+        }
+        &+label .SearchPageBar__List__item__checkLabel {
+            display: inline-block;
+            border-radius: 2.5px;
+            border: solid 2px #0dc1e3;
+            background-color: #ffffff;
+            &::before {
+                display: block;
+                content: "";
+                border: solid 1px #0dc1e3;
+                width: 5px;
+                transform: rotate(45deg) translate(9px, 5px);
+            }
+            &::after {
+                display: block;
+                content: "";
+                border: solid 1px #0dc1e3;
+                width: 10px;
+                transform: rotate(-50deg) translate(-1px, 8px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .SearchPageBar {
+        width: 30vw;
+        &__Icon {
+            & svg {
+                width: 150px;
+            }
+        }
+        &__List {
+            width: calc(90% - 20px);
+            margin: 0 auto;
+            &__item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                &--seller {
+                    display: inline-block;
+                    width: 50%;
+                }
+                &__checkbox {
+                    display: none;
+                }
+                &__textLabel {
+                    display: inline-block;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #4d4d4d;
+                    transform: translateX(10px) translateY(-3px);
+                }
+                &__price {
+                    position: absolute;
+                    right: 0;
+                    display: inline-block;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #4d4d4d;
+                }
+            }
+        }
+    }
+    input[class="SearchPageBar__List__item__checkbox"] {
+        &+label .SearchPageBar__List__item__checkLabel {
+            width: 14px;
+            height: 14px;
+        }
+        &:checked {
+            &+label .SearchPageBar__List__item__checkLabel {
+                &::before {
+                    transform: rotate(45deg) translate(6px, 5px);
+                }
+                &::after {
+                    transform: rotate(-50deg) translate(-1px, 5px);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .SearchPageBar {
+        width: 100%;
+        height: 75px;
+        &__Icon {
+            width: 100%;
+            height: 75px;
+            & svg {
+                height: 35px;
+            }
+        }
+    }
+}
+
+.SearchPageBar__List--seller .SearchPageBar__List__item__textLabel {
+    width: calc(100% - 28px);
+}
