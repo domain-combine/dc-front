@@ -25,7 +25,7 @@ class MainContents extends React.Component<MainContentsProps, MainContentsState>
   constructor(props: MainContentsProps) {
     super(props);
     this.state = {
-      pageIndex: 2,
+      pageIndex: 0,
       contentsData: [
         {
           imageSrc: MainBackGround1,
