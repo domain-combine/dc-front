@@ -1,0 +1,31 @@
+.SearchPageSearchInput {
+  width: calc(100% - 100px);
+  height: 225px;
+  padding-right: 100px;
+  text-align: right;
+  &__form {
+    transform: translateY(82.5px);
+    &__Icon {
+      position: relative;
+      & svg {
+        height: 20px;
+        transform: translateX(50px);
+      }
+    }
+    &__input {
+      width: 200px;
+      height: 40px;
+      border-radius: 48px;
+      background-color: #dfe3ec;
+      padding-left: 70px;
+      padding-right: 20px;
+      font-size: 20px;
+      border: 0;
+      outline: none;
+      color: #505257;
+      &::placeholder {
+        color: #c2c6cf;
+      }
+    }
+  }
+}
