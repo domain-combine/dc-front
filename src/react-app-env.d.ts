@@ -69,3 +69,10 @@ declare module "*.module.sass" {
 }
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+interface domainInfo {
+  tld: string;
+  origin: string;
+  minPrice: number;
+  length: number;
+}
