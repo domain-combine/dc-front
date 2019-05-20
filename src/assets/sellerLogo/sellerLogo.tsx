@@ -6,7 +6,7 @@ import { ReactComponent as NameDotCom } from "./NameDotCom.svg";
 
 interface SellerLogoProps {
   className: string;
-  id: string | undefined;
+  id?: string;
 }
 
 const Gabia = ({ className, id }: SellerLogoProps) => (
