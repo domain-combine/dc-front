@@ -2,8 +2,10 @@
   height: 100%;
   background-color: #ecf0f6;
   display: flex;
+  overflow-y: scroll;
 
   &__wrapper {
     width: 100%;
+    margin-left: 28%;
   }
 }

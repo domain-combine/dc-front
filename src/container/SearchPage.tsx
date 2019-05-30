@@ -15,7 +15,38 @@ interface RouterMatch {
 }
 
 const SearchPage = ({ match }: SearchPageProps) => {
-	const [SearchResult, setSearchResult] = React.useState([]);
+	const [SearchResult, setSearchResult] = React.useState<domainInfo[]>([
+		{
+			tld: 'com',
+			origin: 'Gabia',
+			minPrice: 10000,
+			length: 7
+		},
+		{
+			tld: 'net',
+			origin: 'Gabia',
+			minPrice: 12000,
+			length: 5
+		},
+		{
+			tld: 'info',
+			origin: 'HostingKr',
+			minPrice: 7000,
+			length: 8
+		},
+		{
+			tld: 'me',
+			origin: 'BlueHost',
+			minPrice: 10000,
+			length: 6
+		},
+		{
+			tld: 'name',
+			origin: 'Gabia',
+			minPrice: 13000,
+			length: 5
+		}
+	]);
 	React.useEffect(() => {});
 
 	return (

@@ -1,0 +1,47 @@
+.SearchPageResult {
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height: 140px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  &__domainName {
+    font-size: 40px;
+    line-height: 140px;
+    color: #000000;
+  }
+
+  &__PriceInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 100%;
+    border-radius: 46px;
+    background-image: linear-gradient(to right, #0dc1e3, #167fcc);
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    &__wrapper {
+      text-align: center;
+
+      &__price {
+        font-size: 30px;
+      }
+    }
+  }
+}
