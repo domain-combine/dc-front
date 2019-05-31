@@ -10,6 +10,9 @@ interface SearchPageResultProps {
 
 const SearchPageResult = ({ domainName, domainInfo }: SearchPageResultProps) => {
 	const { tld, origin, minPrice, length } = domainInfo;
+	if (!domainInfo.view) {
+		return null;
+	}
 	return (
 		<div className="SearchPageResult">
 			<DomainSellerLogo origin={origin} />

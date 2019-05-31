@@ -14,8 +14,8 @@ interface RouterMatch {
 }
 
 function renderResult(domainName: string, domainTLDList: domainInfo[]) {
-	return domainTLDList.map(result => {
-		return <SearchPageResult domainName={domainName} domainInfo={result} />;
+	return domainTLDList.map((result, index) => {
+		return <SearchPageResult key={index} domainName={domainName} domainInfo={result} />;
 	});
 }
 

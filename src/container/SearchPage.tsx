@@ -1,63 +1,75 @@
 import * as React from 'react';
+import axios, { AxiosResponse } from 'axios';
+import * as H from 'history';
 import { withRouter, RouteComponentProps, match } from 'react-router-dom';
 import SearchPageBar from '../components/SearchPage/SearchPageBar';
 import SearchPageSearchInput from '../components/SearchPage/SearchPageSearchInput';
 import SearchPageResultRender from '../components/SearchPage/SearchPageResultRender';
 
-import './SearchPage.scss';
+import Config from '../core/request/config.json';
 
-interface SearchPageProps extends RouteComponentProps {
-	match: match<RouterMatch>;
-}
+import './SearchPage.scss';
 
 interface RouterMatch {
 	domain: string;
 }
 
-const SearchPage = ({ match }: SearchPageProps) => {
-	const [SearchResult, setSearchResult] = React.useState<domainInfo[]>([
-		{
-			tld: 'com',
-			origin: 'Gabia',
-			minPrice: 10000,
-			length: 7
-		},
-		{
-			tld: 'net',
-			origin: 'Gabia',
-			minPrice: 12000,
-			length: 5
-		},
-		{
-			tld: 'info',
-			origin: 'HostingKr',
-			minPrice: 7000,
-			length: 8
-		},
-		{
-			tld: 'me',
-			origin: 'BlueHost',
-			minPrice: 10000,
-			length: 6
-		},
-		{
-			tld: 'name',
-			origin: 'Gabia',
-			minPrice: 13000,
-			length: 5
-		}
-	]);
-	React.useEffect(() => {});
+export interface SearchPageProps extends RouteComponentProps<RouterMatch> {}
 
-	return (
-		<div className="SearchPage" style={{ width: window.screen.width }}>
-			<SearchPageBar tldList={['']} />
-			<div className="SearchPage__wrapper">
-				<SearchPageSearchInput />
-				<SearchPageResultRender domainTLDList={SearchResult} />
+export interface SearchPageState {
+	SearchResult: domainInfo[];
+}
+
+interface getDomainInfo {
+	tld: string;
+	origin: string;
+	minPrice: number;
+	length: number;
+}
+
+class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
+	state = {
+		SearchResult: []
+	};
+
+	componentDidMount() {
+		axios.get(`${Config.rootURL}/list?domain=${this.props.match.params.domain}`).then((res: AxiosResponse) => {
+			const list = res.data;
+			const data: domainInfo[] = [];
+			list.map((item: getDomainInfo, index: number) => {
+				data.push({ ...item, view: true });
+			});
+			this.setSearchResult(data);
+		});
+	}
+
+	setSearchResult(value: domainInfo[]) {
+		this.setState({ SearchResult: value });
+	}
+
+	changeTLDView(index: number) {
+		const SearchResult: domainInfo[] = this.state.SearchResult;
+		SearchResult[index].view = !SearchResult[index].view;
+		this.setState({ SearchResult });
+	}
+
+	render() {
+		return (
+			<div className="SearchPage" style={{ width: window.screen.width }}>
+				<SearchPageBar
+					domainTLDList={this.state.SearchResult}
+					changeTLDView={(index: number) => {
+						console.log(index);
+						this.changeTLDView(index);
+					}}
+				/>
+				<div className="SearchPage__wrapper">
+					<SearchPageSearchInput />
+					<SearchPageResultRender domainTLDList={this.state.SearchResult} />
+				</div>
 			</div>
-		</div>
-	);
-};
+		);
+	}
+}
 
 export default withRouter(SearchPage);
