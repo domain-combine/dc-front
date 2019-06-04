@@ -49,7 +49,7 @@ module.exports = function (webpackEnv) {
   // In development, we always serve from the root. This makes config easier.
   const publicPath = isEnvProduction ?
     paths.servedPath :
-    isEnvDevelopment && '/';
+    isEnvDevelopment && './';
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -59,7 +59,7 @@ module.exports = function (webpackEnv) {
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   const publicUrl = isEnvProduction ?
     publicPath.slice(0, -1) :
-    isEnvDevelopment && '';
+    isEnvDevelopment && './';
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -119,8 +119,7 @@ module.exports = function (webpackEnv) {
     devtool: isEnvProduction ?
       shouldUseSourceMap ?
       'source-map' :
-      false :
-      isEnvDevelopment && 'cheap-module-source-map',
+      false : isEnvDevelopment && 'cheap-module-source-map',
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -150,12 +149,10 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction ?
-        'static/js/[name].[contenthash:8].js' :
-        isEnvDevelopment && 'static/js/bundle.js',
+        './static/js/[name].[contenthash:8].js' : isEnvDevelopment && './static/js/bundle.js',
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction ?
-        'static/js/[name].[contenthash:8].chunk.js' :
-        isEnvDevelopment && 'static/js/[name].chunk.js',
+        './static/js/[name].[contenthash:8].chunk.js' : isEnvDevelopment && './static/js/[name].chunk.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -164,9 +161,8 @@ module.exports = function (webpackEnv) {
         info =>
         path
         .relative(paths.appSrc, info.absoluteResourcePath)
-        .replace(/\\/g, '/') :
-        isEnvDevelopment &&
-        (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+        .replace(/\\/g, './') : isEnvDevelopment &&
+        (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, './')),
     },
     optimization: {
       minimize: isEnvProduction,
@@ -218,16 +214,14 @@ module.exports = function (webpackEnv) {
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
             parser: safePostCssParser,
-            map: shouldUseSourceMap ?
-              {
-                // `inline: false` forces the sourcemap to be output into a
-                // separate file
-                inline: false,
-                // `annotation: true` appends the sourceMappingURL to the end of
-                // the css file, helping the browser find the sourcemap
-                annotation: true,
-              } :
-              false,
+            map: shouldUseSourceMap ? {
+              // `inline: false` forces the sourcemap to be output into a
+              // separate file
+              inline: false,
+              // `annotation: true` appends the sourceMappingURL to the end of
+              // the css file, helping the browser find the sourcemap
+              annotation: true,
+            } : false,
           },
         }),
       ],
@@ -322,7 +316,7 @@ module.exports = function (webpackEnv) {
               loader: require.resolve('url-loader'),
               options: {
                 limit: 10000,
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: './static/media/[name].[hash:8].[ext]',
               },
             },
             // Process application JS with Babel.
@@ -459,7 +453,7 @@ module.exports = function (webpackEnv) {
               // by webpacks internal loaders.
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: './static/media/[name].[hash:8].[ext]',
               },
             },
             // ** STOP ** Are you adding a new loader?
@@ -470,17 +464,16 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
-      new BundleAnalyzerPlugin({
+      isEnvDevelopment ? new BundleAnalyzerPlugin({
         analyzerHost: '127.0.0.1',
         analyzerPort: 8080
-      }),
+      }) : null,
       new HtmlWebpackPlugin(
         Object.assign({}, {
             inject: true,
             template: paths.appHtml,
           },
-          isEnvProduction ?
-          {
+          isEnvProduction ? {
             minify: {
               removeComments: true,
               collapseWhitespace: true,
@@ -534,8 +527,8 @@ module.exports = function (webpackEnv) {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: 'static/css/[name].[contenthash:8].css',
-        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+        filename: './static/css/[name].[contenthash:8].css',
+        chunkFilename: './static/css/[name].[contenthash:8].chunk.css',
       }),
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
