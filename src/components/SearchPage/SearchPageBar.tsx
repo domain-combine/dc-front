@@ -27,7 +27,7 @@ const renderTLDList = (domainTLDList: domainInfo[], changeTLDView: Function) =>
 					<div className="SearchPageBar__List__item__textLabel">.{item.tld}</div>
 					<span className="flex" />
 					<div className={`SearchPageBar__List__item__price`}>
-						<span>{item.minPrice}원 ~</span>
+						<span>{item.minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 ~</span>
 					</div>
 				</label>
 			</div>
