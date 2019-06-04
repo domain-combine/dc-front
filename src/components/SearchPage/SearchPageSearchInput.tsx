@@ -18,7 +18,7 @@ const SearchPageSearchInput = ({
     <div className="SearchPageSearchInput">
       <form
         className="SearchPageSearchInput__form"
-        onSubmit={(e: any): void => {
+        onSubmit={(e: React.FormEvent): void => {
           e.preventDefault();
           if (searchDomain !== "") {
             history.push(`/search/${searchDomain}`);
