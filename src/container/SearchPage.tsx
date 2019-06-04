@@ -5,6 +5,7 @@ import { withRouter, RouteComponentProps, match } from 'react-router-dom';
 import SearchPageBar from '../components/SearchPage/SearchPageBar';
 import SearchPageSearchInput from '../components/SearchPage/SearchPageSearchInput';
 import SearchPageResultRender from '../components/SearchPage/SearchPageResultRender';
+import LodingPopup from '../components/SearchPage/LodingPopup';
 
 import Config from '../core/request/config.json';
 
@@ -18,6 +19,7 @@ export interface SearchPageProps extends RouteComponentProps<RouterMatch> {}
 
 export interface SearchPageState {
 	SearchResult: domainInfo[];
+	loding: boolean;
 }
 
 interface getDomainInfo {
@@ -29,10 +31,12 @@ interface getDomainInfo {
 
 class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 	state = {
-		SearchResult: []
+		SearchResult: [],
+		loding: false
 	};
 
 	componentDidMount() {
+		this.setState({ loding: true });
 		axios.get(`${Config.rootURL}/list?domain=${this.props.match.params.domain}`).then((res: AxiosResponse) => {
 			const list = res.data;
 			const data: domainInfo[] = [];
@@ -40,6 +44,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 				data.push({ ...item, view: true });
 			});
 			this.setSearchResult(data);
+			this.setState({ loding: false });
 		});
 	}
 
@@ -54,8 +59,10 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 	}
 
 	render() {
+		const { loding } = this.state;
 		return (
 			<div className="SearchPage" style={{ width: window.screen.width }}>
+				{loding ? <LodingPopup /> : null}
 				<SearchPageBar
 					domainTLDList={this.state.SearchResult}
 					changeTLDView={(index: number) => {
