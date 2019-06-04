@@ -9,21 +9,21 @@ interface DomainSellerLogoProps {
 
 function getLogo(origin: string) {
 	switch (origin) {
-		case 'Gabia':
+		case 'https://www.gabia.com':
 			return <sellerLogo.Gabia className="DomainSellerLogo__Logo" />;
-		case 'GoDaddy':
+		case 'https://godaddy.com/':
 			return <sellerLogo.GoDaddy className="DomainSellerLogo__Logo" />;
-		case 'BlueHost':
+		case 'https://www.bluehost.com/domains':
 			return <sellerLogo.BlueHost className="DomainSellerLogo__Logo" />;
-		case 'DirectHosting':
+		case 'https://www.direct.co.kr':
 			return <sellerLogo.DirectHosting className="DomainSellerLogo__Logo" />;
-		case 'NameDotCom':
+		case 'https://www.name.com/':
 			return <sellerLogo.NameDotCom className="DomainSellerLogo__Logo" />;
-		case 'HostingKr':
+		case 'https://www.hosting.kr':
 			return <sellerLogo.HostingKr className="DomainSellerLogo__Logo" />;
-		case 'MailPlug':
+		case 'https://www.mailplug.com':
 			return <sellerLogo.MailPlug className="DomainSellerLogo__Logo" />;
-		case 'OnlyDomains':
+		case 'https://www.onlydomains.com':
 			return <sellerLogo.OnlyDomains className="DomainSellerLogo__Logo" />;
 		default:
 			return <div>로고 없음</div>;
