@@ -19,15 +19,18 @@ const MainSearchBar = ({ history, location, match }: MainSearchBarProps) => {
           history.push(`/search/${searchDomain}`);
         }}
       >
-        <span className="MainSearchBar__InputBox__title">www.</span>
-        <input
-          type="text"
-          className="MainSearchBar__InputBox__input"
-          value={searchDomain}
-          placeholder="구매하고 싶은 도메인을 입력하세요"
-          onChange={(e: InputEvent) => setDomain(e.target.value)}
-        />
-        <SearchBarTLD />
+        <label htmlFor="searchDomain">
+          <span className="MainSearchBar__InputBox__title">www.</span>
+          <input
+            type="text"
+            className="MainSearchBar__InputBox__input"
+            id="searchDomain"
+            value={searchDomain}
+            placeholder="구매하고 싶은 도메인을 입력하세요"
+            onChange={(e: InputEvent) => setDomain(e.target.value)}
+          />
+          <SearchBarTLD />
+        </label>
       </form>
     </div>
   );
